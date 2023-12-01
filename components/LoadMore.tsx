@@ -2,7 +2,7 @@
 
 import { fetchAnime } from "@/app/action";
 import Image from "next/image";
-import { ReactNode, ReactNode, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { useInView } from "react-intersection-observer";
 import AnimeCard, { AnimeProp } from "./AnimeCard";
 
@@ -11,28 +11,13 @@ let page = 2;
 export type AnimeCard = JSX.Element;
 function LoadMore() {
   const { ref, inView } = useInView();
-  // const [data, setData] = useState<AnimeProp[]>([]);
+  const [data, setData] = useState<AnimeProp[]>([]);
 
-  // //Load more
-  // useEffect(() => {
-  //   if (inView) {
-  //     fetchAnime(page).then((res) => {
-  //       setData([...data, ...res]); // keep track of existing data to add new data using ...res
-  //       page++;
-  //     });
-  //   }
-  // }, [inView, data]);
-  const [data, setData] = useState<ReactNode[]>([]);
-
-  // Load more
+  //Load more
   useEffect(() => {
     if (inView) {
       fetchAnime(page).then((res) => {
-        // Convert each AnimeProp to a ReactNode
-        const newData: ReactNode[] = res.map((anime) => (
-          <AnimeCard key={anime.id} {...anime} />
-        ));
-        setData([...data, ...newData]);
+        setData([...data, ...res]); // keep track of existing data to add new data using ...res
         page++;
       });
     }
