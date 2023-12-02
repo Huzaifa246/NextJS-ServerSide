@@ -22,6 +22,9 @@ const variants = {
   visible: { opacity: 1 },
 };
 function AnimeCard({ anime, index }: Prop) {
+  const imageUrl = anime?.image?.original
+    ? `https://shikimori.one${anime.image.original}`
+    : "";
   return (
     <MotionDiv
       variants={variants}
@@ -36,12 +39,15 @@ function AnimeCard({ anime, index }: Prop) {
       className="max-w-sm rounded relative w-full"
     >
       <div className="relative w-full h-[37vh]">
-        <Image
+        {/* <Image
           src={`https://shikimori.one${anime?.image?.original}`}
           alt={anime.name}
           fill
           className="rounded-xl"
-        />
+        /> */}
+        {imageUrl && (
+          <Image src={imageUrl} alt={anime.name} fill className="rounded-xl" />
+        )}
       </div>
       <div className="py-4 flex flex-col gap-3">
         <div className="flex justify-between items-center gap-1">
