@@ -21,7 +21,7 @@ const variants = {
   hidden: { opacity: 0 },
   visible: { opacity: 1 },
 };
-function AnimeCard({ anime, index }: Prop) {
+function AnimeCard({ anime, index }: Prop): React.ReactNode {
   const imageUrl = anime?.image?.original
     ? `https://shikimori.one${anime.image.original}`
     : "";
